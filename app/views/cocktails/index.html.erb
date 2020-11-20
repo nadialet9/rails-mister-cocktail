@@ -1,14 +1,18 @@
 
 
 <div class="container">
-  <div >
+  <div>
     <h1 class="text-center"> Wich cocktail do you want to try ? </h1>
   </div>
   <div class="row d-flex flex-wrap justify-content-around">
     <% @cocktails.each do |cocktail| %>
       <div class="card col-4 pb-4 m-2"  >
         <div class="mt-2">
-          <img src=" <%= cl_image_path cocktail.photo.key, height: 400, width: 300, crop: :fill %>" class="card-img-top" alt="cocktail image">
+          <% if cocktail.photo.present? %>
+            <img src=" <%= cl_image_path cocktail.photo.key, height: 400, width: 300, crop: :fill %>" class="card-img-top" alt="cocktail image">
+          <% else %>
+            <%= image_tag "mojito.png", width: 400 %>
+          <% end %>
         </div>
         <div class="card-body">
           <h5 class="card-title"><%= cocktail.name %></h5>
